@@ -1,11 +1,11 @@
 .books {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
     &__list {
-        width: 100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    &__detail {
+        padding: 2rem;
     }
 }
 

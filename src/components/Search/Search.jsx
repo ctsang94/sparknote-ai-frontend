@@ -8,14 +8,18 @@ const Search = () => {
     const baseUrl = 'http://localhost:8000'
     const [search, setSearch] = useState('')
     const { setBooks } = useContext(BookContext)
+    const defaultPage = 3
+    const defaultLimit = 20
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await fetch(`${baseUrl}/books?query=${search}`)
+            const response = await fetch(
+                `${baseUrl}/books?query=${search}&page=${defaultPage}&limit=${defaultLimit}`
+            )
             const data = await response.json()
-            setBooks(data.items)
-            console.log(books)
+            console.log(data)
+            setBooks(data.books)
         } catch (error) {
             console.log(error)
         }
