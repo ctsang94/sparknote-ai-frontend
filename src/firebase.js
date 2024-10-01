@@ -5,13 +5,15 @@ import { getAuth } from 'firebase/auth'
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
 const firebaseConfig = {
-    apiKey: 'AIzaSyBSKAeek6Wzy2jhojikxMZC4CEp9iRPYis',
-    authDomain: 'sparknote-aio.firebaseapp.com',
-    projectId: 'sparknote-aio',
-    storageBucket: 'sparknote-aio.appspot.com',
-    messagingSenderId: '636310625711',
-    appId: '1:636310625711:web:823f87cda434378440235a',
+    apiKey: import.meta.env.VITE_REACT_APP_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env
+        .VITE_REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_REACT_APP_FIREBASE_APP_ID,
 }
 
 // Initialize Firebase
