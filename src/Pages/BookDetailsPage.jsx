@@ -8,6 +8,7 @@ const BookDetailsPage = () => {
     const { books } = useContext(BookContext)
     const { id } = useParams()
     const [aiResponse, setAiResponse] = useState('')
+    const [isLoading, setIsLoading] = useState('true')
 
     const book = books.find((book) => book.id === id)
     if (!book) {
@@ -16,17 +17,18 @@ const BookDetailsPage = () => {
     console.log(book)
     const { title, authors, description, imageLinks } = book.volumeInfo
 
-    const aiService = async (book) => {
+    const aiService = async () => {
         try {
             const response = await fetch(`${baseUrl}/openaiservice`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ title: title, author: authors }),
+                body: JSON.stringify({ title: title, authors: authors }),
             })
             const data = await response.json()
             setAiResponse(data.aiContent)
+            setIsLoading(false)
         } catch (error) {
             console.log('Error using the AI service', error)
         }
@@ -45,7 +47,7 @@ const BookDetailsPage = () => {
             )}
             <p>{description}</p>
             <h3>Summary</h3>
-            <p>{aiResponse.content}</p>
+            {!isLoading ? <p>{aiResponse.content}</p> : <p>Loading Summary...</p>}
         </div>
     )
 }

@@ -5,20 +5,43 @@ import Header from './components/Header/Header'
 import Search from './components/Search/Search'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import BookDetailsPage from './Pages/BookDetailsPage'
+import LoginPage from './Pages/LoginPage'
+import { useState } from 'react'
+import AuthDetails from './AuthDetails'
 
 function App() {
+    const [isSignIn, setIsSignIn] = useState(false)
+
     return (
         <>
             <BookProvider>
                 <BrowserRouter>
-                    <Header />
+                    {isSignIn && <Header />}
                     <Routes>
+                        <Route
+                            path="/"
+                            element={
+                                isSignIn ? (
+                                    <>
+                                        <Search />
+                                        <BookList />
+                                        <AuthDetails />
+                                    </>
+                                ) : (
+                                    <LoginPage
+                                        isSignIn={isSignIn}
+                                        setIsSignIn={setIsSignIn}
+                                    />
+                                )
+                            }
+                        />
                         <Route
                             path="/"
                             element={
                                 <>
                                     <Search />
                                     <BookList />
+                                    <AuthDetails />
                                 </>
                             }
                         />

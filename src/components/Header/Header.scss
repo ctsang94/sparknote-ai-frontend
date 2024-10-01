@@ -1,0 +1,23 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem 0 2rem;
+    &__nav {
+        display: flex;
+        gap: 3rem;
+        &-title {
+            font-weight: 600;
+        }
+    }
+    &__button {
+        height: 2rem;
+        font-size: 1rem;
+        border-radius: 1.5rem;
+    }
+}
+
+.headerImg {
+    width: 50px;
+    height: 50px;
+}
