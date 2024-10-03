@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useContext, useState } from 'react'
 import { BookContext } from '../components/Context/Context'
+import { Link } from 'react-router-dom'
 
 const BookDetailsPage = () => {
     const baseUrl = 'http://localhost:8000'
@@ -41,13 +42,30 @@ const BookDetailsPage = () => {
     return (
         <div>
             <h2>{title}</h2>
+            <Link to="/home">
+                <button
+                    style={{
+                        backgroundColor: 'blue',
+                        color: 'white',
+                        padding: '10px 20px',
+                        border: 'none',
+                        borderRadius: '5px',
+                    }}
+                >
+                    Go back
+                </button>
+            </Link>
             {authors && <p>Author(s): {authors.join(', ')}</p>}
             {imageLinks?.thumbnail && (
                 <img src={imageLinks.thumbnail} alt={title} />
             )}
             <p>{description}</p>
             <h3>Summary</h3>
-            {!isLoading ? <p>{aiResponse.content}</p> : <p>Loading Summary...</p>}
+            {!isLoading ? (
+                <p>{aiResponse.content}</p>
+            ) : (
+                <p>Loading Summary...</p>
+            )}
         </div>
     )
 }

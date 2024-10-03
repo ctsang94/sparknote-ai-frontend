@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { auth } from '../firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import './LoginPage.scss'
+import { useNavigate } from 'react-router-dom'
 
 const LoginPage = ({ isSignIn, setIsSignIn }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const navigate = useNavigate()
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -31,6 +33,13 @@ const LoginPage = ({ isSignIn, setIsSignIn }) => {
                 console.log(error)
             })
     }
+
+    useEffect(() => {
+        if (isSignIn) {
+            navigate('/home')
+        }
+    }, [isSignIn, navigate])
+
     return (
         <div className="login-container">
             <h2>Login</h2>
