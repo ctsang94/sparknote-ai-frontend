@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 
 const BookList = () => {
     const { books } = useContext(BookContext)
-    const baseUrl = 'http://localhost:8000'
+    const baseUrl = 'https://sparknote-ai-backend.onrender.com'
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [aiResponse, setAiResponse] = useState('')
     const navigate = useNavigate()
